@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 @NgModule({
     declarations: [AppComponent],
@@ -21,7 +22,8 @@ import { environment } from 'src/environments/environment';
         IonicModule.forRoot(),
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFireAuthModule
+        AngularFireAuthModule,
+        AngularFirestoreModule
     ],
     providers: [
         StatusBar,
