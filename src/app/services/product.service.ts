@@ -15,7 +15,7 @@ export class ProductService {
         this.productsCollection = this.afs.collection<Product>(`Products`);
     }
 
-    addProducts(product: Product) {
+    addProduct(product: Product) {
         return this.productsCollection.add(product);
     }
 
@@ -39,7 +39,7 @@ export class ProductService {
         }));
     }
 
-    updateProducts(id: string, product: Product) {
-
+    updateProduct(id: string, product: Product) {
+        return this.productsCollection.doc<Product>(id).update(product);
     }
 }

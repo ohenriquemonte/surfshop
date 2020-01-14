@@ -68,16 +68,27 @@ export class DetailsPage implements OnInit {
         this.product.userId = this.authService.getAuth().currentUser.uid;
 
         if (this.productId) {
+            try {
+                await this.productService.updateProduct(this.productId, this.product);
+                await this.loading.dismiss();
 
+                this.navCtrl.navigateBack('/home');
+            } catch (error) {
+                console.error(error);
+
+                this.presentToast('Erro ao tentar salvar');
+                this.loading.dismiss();
+            }
         } else {
             this.product.createdAt = new Date().getTime();
 
             try {
-                await this.productService.addProducts(this.product);
+                await this.productService.addProduct(this.product);
                 await this.loading.dismiss();
+
                 this.navCtrl.navigateBack('/home');
-            } catch (err) {
-                this.presentToast(`Erro ao tentar salvar produto!`);
+            } catch (error) {
+                this.presentToast('Erro ao tentar salvar');
                 this.loading.dismiss();
             }
         }
